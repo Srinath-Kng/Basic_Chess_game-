@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chessboard</title>
+
+    <style>
+        body{
+            text-align: center;
+            background: url("images/back1.png");
+        }
+
+        #main{
+            width: 1248px;
+            margin: 0 auto;
+        }
+
+        #main div{
+            float: left;
+            margin: inherit;
+        }
+
+        #board, .row .wht, .blk{
+            /*position: absolute;*/
+            display: block;
+            padding: 0px;
+            margin: 0px;
+            /*transform: rotateX(45deg);*/
+        }
+
+        #board{
+            /*position: absolute;*/
+            width: 736px;
+            height: 736px;
+            border: 5px solid black;
+            /*margin: 0 auto;*/
+        }
+
+        .blk, .wht{
+            width: 90px;
+            height: 90px;
+            float: left;
+            border: 1px solid black;
+        }
+
+        .blk{
+            background-color: #135883 ;
+        }
+
+        .wht{
+            background-color: #ffffff ;
+        }
+
+        img{
+            height: 70px;
+            margin: 8px;
+        }
+
+        .movable-block-blk{
+            background: #135883 -moz-radial-gradient(center, ellipse cover, rgba(248,255,232,0.4) 0%, rgba(227,245,171,0.4) 30%, rgba(183,223,45,0.4) 100%);
+            background: #135883 -webkit-radial-gradient(center, ellipse cover, rgba(248,255,232,0.4) 0%,rgba(227,245,171,0.4) 30%,rgba(183,223,45,0.4) 100%);
+            background: #135883 radial-gradient(ellipse at center, rgba(248,255,232,0.4) 0%,rgba(227,245,171,0.4) 30%,rgba(183,223,45,0.4) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33f8ffe8', endColorstr='#33b7df2d',GradientType=1 );
+        }
+
+        .movable-block-wht{
+            background: #ffffff -moz-radial-gradient(center, ellipse cover, rgba(248,255,232,0.4) 0%, rgba(227,245,171,0.4) 30%, rgba(183,223,45,0.4) 100%);
+            background: #ffffff -webkit-radial-gradient(center, ellipse cover, rgba(248,255,232,0.4) 0%,rgba(227,245,171,0.4) 30%,rgba(183,223,45,0.4) 100%);
+            background: #ffffff radial-gradient(ellipse at center, rgba(248,255,232,0.4) 0%,rgba(227,245,171,0.4) 30%,rgba(183,223,45,0.4) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33f8ffe8', endColorstr='#33b7df2d',GradientType=1 );
+        }
+
+        .capture-block{
+            background: rgb(249,198,103);
+            background: -moz-radial-gradient(center, ellipse cover, rgba(249,198,103,1) 0%, rgba(247,150,33,1) 100%);
+            background: -webkit-radial-gradient(center, ellipse cover, rgba(249,198,103,1) 0%,rgba(247,150,33,1) 100%);
+            background: radial-gradient(ellipse at center, rgba(249,198,103,1) 0%,rgba(247,150,33,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9c667', endColorstr='#f79621',GradientType=1 );
+        }
+
+        #white-capture-pices, #black-capture-pices{
+            width: 250px;
+            height: 746px;
+            position: relative;
+            background: -moz-radial-gradient(center, ellipse cover, rgba(63,76,107,0.6) 0%, rgba(63,76,107,0.6) 100%);
+            background: -webkit-radial-gradient(center, ellipse cover, rgba(63,76,107,0.6) 0%,rgba(63,76,107,0.6) 100%);
+            background: radial-gradient(ellipse at center, rgba(63,76,107,0.6) 0%,rgba(63,76,107,0.6) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#663f4c6b', endColorstr='#663f4c6b',GradientType=1 );
+        }
+
+        #white-capture-pices img, #black-capture-pices img{
+            width: 45px;
+            height: 45px;
+            float: inherit;
+        }
+
+        #timer-black, #timer-white{
+            color: greenyellow;
+            font-size: 24px;
+        }
+
+
+    </style>
+
+</head>
+<body>
+
+    <div id="main">
+        <div id="white-capture-pices">
+            <p id="timer-white">15:00</p>
+        </div>
+
+        <div id="board">
+            <div class="row" id="row-8">
+                <div class="wht" id="57"><img class="blk-rook" src="icons/Brook.svg"></div>
+                <div class="blk" id="58"><img class="blk-knight" src="icons/Bknight.svg"></div>
+                <div class="wht" id="59"><img class="blk-bishop" src="icons/Bishop.svg"></div>
+                <div class="blk" id="60"><img class="blk-king" src="icons/bqueen.svg" alt=""></div>
+                <div class="wht" id="61"><img class="blk-queen" src="icons/Bking.svg" alt=""></div>
+                <div class="blk" id="62"><img class="blk-bishop" src="icons/Bishop.svg"></div>
+                <div class="wht" id="63"><img class="blk-knight" src="icons/Bknight.svg"></div>
+                <div class="blk" id="64"><img class="blk-rook" src="icons/Brook.svg"></div>
+            </div>
+            <div class="row" id="row-7">
+                <div class="blk" id="49"><img class="blk-pawn" src="icons/Bpawn.svg"></div>
+                <div class="wht" id="50"><img class="blk-pawn" src="icons/Bpawn.svg"></div>
+                <div class="blk" id="51"><img class="blk-pawn" src="icons/Bpawn.svg"></div>
+                <div class="wht" id="52"><img class="blk-pawn" src="icons/Bpawn.svg"></div>
+                <div class="blk" id="53"><img class="blk-pawn" src="icons/Bpawn.svg"></div>
+                <div class="wht" id="54"><img class="blk-pawn" src="icons/Bpawn.svg"></div>
+                <div class="blk" id="55"><img class="blk-pawn" src="icons/Bpawn.svg"></div>
+                <div class="wht" id="56"><img class="blk-pawn" src="icons/Bpawn.svg"></div>
+            </div>
+            <div class="row" id="row-6">
+                <div class="wht" id="41"></div>
+                <div class="blk" id="42"></div>
+                <div class="wht" id="43"></div>
+                <div class="blk" id="44"></div>
+                <div class="wht" id="45"></div>
+                <div class="blk" id="46"></div>
+                <div class="wht" id="47"></div>
+                <div class="blk" id="48"></div>
+            </div>
+            <div class="row" id="row-5">
+                <div class="blk" id="33"></div>
+                <div class="wht" id="34"></div>
+                <div class="blk" id="35"></div>
+                <div class="wht" id="36"></div>
+                <div class="blk" id="37"></div>
+                <div class="wht" id="38"></div>
+                <div class="blk" id="39"></div>
+                <div class="wht" id="40"></div>
+            </div>
+            <div class="row" id="row-4">
+                <div class="wht" id="25"></div>
+                <div class="blk" id="26"></div>
+                <div class="wht" id="27"></div>
+                <div class="blk" id="28"></div>
+                <div class="wht" id="29"></div>
+                <div class="blk" id="30"></div>
+                <div class="wht" id="31"></div>
+                <div class="blk" id="32"></div>
+            </div>
+            <div class="row" id="row-3">
+                <div class="blk" id="17"></div>
+                <div class="wht" id="18"></div>
+                <div class="blk" id="19"></div>
+                <div class="wht" id="20"></div>
+                <div class="blk" id="21"></div>
+                <div class="wht" id="22"></div>
+                <div class="blk" id="23"></div>
+                <div class="wht" id="24"></div>
+            </div>
+            <div class="row" id="row-2">
+                <div class="wht" id="9"><img class="wht-pawn" src="icons/Pawn.svg"></div>
+                <div class="blk" id="10"><img class="wht-pawn" src="icons/Pawn.svg"></div>
+                <div class="wht" id="11"><img class="wht-pawn" src="icons/Pawn.svg"></div>
+                <div class="blk" id="12"><img class="wht-pawn" src="icons/Pawn.svg"></div>
+                <div class="wht" id="13"><img class="wht-pawn" src="icons/Pawn.svg"></div>
+                <div class="blk" id="14"><img class="wht-pawn" src="icons/Pawn.svg"></div>
+                <div class="wht" id="15"><img class="wht-pawn" src="icons/Pawn.svg"></div>
+                <div class="blk" id="16"><img class="wht-pawn" src="icons/Pawn.svg"></div>
+            </div>
+            <div class="row" id="row-1">
+                <div class="blk" id="1"><img class="wht-rook" src="icons/Rook.svg"></div>
+                <div class="wht" id="2"><img class="wht-knight" src="icons/knight.svg"></div>
+                <div class="blk" id="3"><img class="wht-bishop" src="icons/Bbishop.svg"></div>
+                <div class="wht" id="4"><img class="wht-king" src="icons/Queen.svg" alt="king"></div>
+                <div class="blk" id="5"><img class="wht-queen" src="icons/King.svg" alt=""></div>
+                <div class="wht" id="6"><img class="wht-bishop" src="icons/Bbishop.svg"></div>
+                <div class="blk" id="7"><img class="wht-knight" src="icons/knight.svg"></div>
+                <div class="wht" id="8"><img class="wht-rook" src="icons/Rook.svg"></div>
+            </div>
+        </div>
+
+        <div id="black-capture-pices">
+            <p id="timer-black">15:00</p>
+        </div>
+    </div>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/chess-pieces-movement.js"></script>
+    <script>
+        var width = screen.width/2;
+        var left = width - 368;
+    </script>
+</body>
+</html>
